@@ -5,9 +5,9 @@
 
 ##### 1. Télécharger le code
 ```bash
->tar-xzf kafka_2.11-1.0.1.tgz
+> tar-xzf kafka_2.11-1.0.1.tgz
 
->cd kafka_2.11-1.0.1
+> cd kafka_2.11-1.0.1
 ```
 ##### 2. Démarrer le serveur
 Ouvrir à chaque fois un nouveau bash pour chaque application (garder Zookeper, Kafka et topic ouverts dans des fenêtres différentes).
@@ -52,7 +52,7 @@ Créer un config file pour chaque broker: pour chaque broker changer ```server-1
 ```bash
 > config/server-1.properties:
 >    broker.id=1
-> 	 listeners=PLAINTEXT://:9093
+>    listeners=PLAINTEXT://:9093
 >    log.dir=/tmp/kafka-logs-1
 ```
 * Ou modifier directement dans le fichier en passant par nano:
