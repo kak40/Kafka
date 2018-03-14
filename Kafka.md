@@ -57,7 +57,7 @@ Créer un config file pour chaque broker: pour chaque broker changer ```server-1
 ```
 * Ou modifier directement dans le fichier en passant par nano:
 ```bash
-sudo nano server-1.properties
+> sudo nano server-1.properties
 ```
 
 
@@ -79,13 +79,13 @@ Topic: my-replicated-topic PartitionCount:1 ReplicationFactor:3 Configs:
 Créer un groupe avec plusieurs utilisateurs: dans le fichier ```consumer.properties```, changer les champs ```zookeeper.connect``` et  ```group.id```. Mettre l'IP du serveur zookeper et un nom identique pour le groupe. Créer un fichier identique (changer le nom) pour chaque élément du groupe (```consumer.properties```, ```consumer-1.properties``` etc..).
 
 ```bash
-sudo bin/kafka-console-consumer.sh --bootstrap-server 34.249.95.103:9092 --topic cars-topic --from-beginning --consumer.config config/consumer.properties
+> sudo bin/kafka-console-consumer.sh --bootstrap-server 34.249.95.103:9092 --topic cars-topic --from-beginning --consumer.config config/consumer.properties
 ```
 
 #### Tuer un broker et le relancer
 
 ```bash
-bin/kafka-topics.sh --describe --zookeeper 00.000.00.000:2181 --topic cars-topic
+> bin/kafka-topics.sh --describe --zookeeper 00.000.00.000:2181 --topic cars-topic
 Topic:cars-topic        PartitionCount:5        ReplicationFactor:3     Configs:
         Topic: cars-topic       Partition: 0    Leader: 2       Replicas: 2,0,1 Isr: 2,0,1
         Topic: cars-topic       Partition: 1    Leader: 3       Replicas: 3,1,2 Isr: 3,1,2
@@ -129,9 +129,43 @@ tp_connect
 yolo - marked for deletion
  ```
  
+-------------------------------
+### Windows
 
+Dézipper dossier kafka_2.11-1.0.1.tgz à la racine. Ajouter dossiers: kafka-logs et zookeeper, toujours à la racine. 
+Pour pouvoir utiliser IntelliJ et des programmes Java, ajouter les variables d'environnement suivantes:
+* variable utilisateur: JAVA_HOME : valeur: C:\Program Files\Java\jdk1.8.0_162
+* variable système: path :  valeur: C:\Program Files\Java\jdk1.8.0_162
 
+Zookeeper:
+```bash
+> bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+```
 
+Serveur:
+```bash
+> bin\windows\kafka-server-start.bat config\server.properties
+```
+
+Create topic:
+```bash
+> bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+```
+
+Vérifier la présence de topics:
+```bash
+> bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+```
+
+Créer un producteur:
+```bash
+> bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test
+```
+
+Créer un consommateur:
+```bash
+> bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+```
 
 
 
