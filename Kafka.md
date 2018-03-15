@@ -166,6 +166,12 @@ Créer un consommateur:
 ```bash
 > bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
+
+Augmenter le nombre de partitions d'un topic:
+```bash
+bin\windows\kafka-topics.bat --alter --zookeeper localhost:2181 --topic topic1 --partitions 4
+```
+
 ##### ! Vérifier les logs à chaque démarrage: penser à supprimer le dossier pour éviter les conflits et erreurs.
 
 
