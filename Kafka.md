@@ -1,7 +1,7 @@
 
 # Kafka
 
-### 1.Installation
+### 1. Linux
 
 ##### 1. Télécharger le code
 ```bash
@@ -130,7 +130,7 @@ yolo - marked for deletion
  ```
  
 -------------------------------
-### Windows
+### 2. Windows
 
 Dézipper dossier kafka_2.11-1.0.1.tgz à la racine. Ajouter dossiers: kafka-logs et zookeeper, toujours à la racine. 
 Pour pouvoir utiliser IntelliJ et des programmes Java, ajouter les variables d'environnement suivantes:
@@ -166,7 +166,28 @@ Créer un consommateur:
 ```bash
 > bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
+##### ! Vérifier les logs à chaque démarrage: penser à supprimer le dossier pour éviter les conflits et erreurs.
 
 
+-----------------------------------------------
+### 3. MongoDB
 
+##### 1. Démarrer MongoDB
+Dans ```C:\Program Files\MongoDB\Server\3.6\bin```:
+* Lancer dans un terminal: 
+```bash
+> mongod
+```
+* Dans un deuxième terminal:
+```bash
+> mongo
+```
+
+##### 2. Dans IntelliJ
+
+* Fichiers à modifier:
+	* application.yaml (dans comformationspringkafkaconsumer -> src -> main -> ressources): kafka -> topic -> car: nom du topic et spring -> data -> mongodb -> database: nom de la database
+	* application.yml (dans comformationspringkafkaproducer -> src -> main -> ressources): kafka -> topic: nom du topic.
+* Dans le browser, ouvrir http://localhost:8077/swagger-ui.html
+* Se connecter à MongoDB, voir la liste des databases.
 
